@@ -1,34 +1,51 @@
-*{
+* {
     font-family: 'Roboto', sans-serif;
 }
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-background-color: rgb(98, 150, 192);
+    background-color: rgb(98, 150, 192);
     margin: 0;
     padding: 0;
 }
 
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.creator {
+    text-align: right;
+    font-size: 24px;
+    color: white;
+    justify-self: flex-end;
+}
+
 .box {
     display: flex;
-    flex: 0 0 0;
-    min-width: 300px;
+    flex: 0 0 auto;
+    min-width: 250px;
     min-height: 60vh;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 13px;
+    padding: 12px;
     gap: 20px;
     background-color: rgb(31, 32, 37);
     border-radius: 25px;
-    box-shadow: 2px 2px 3px black;
+    box-shadow: 3px 3px 4px black;
 }
 
 .display {
     box-shadow: inset 2px 2px 3px rgb(35, 34, 34);
-    min-width: 300px;
+    min-width: 250px;
     border-radius: 20px;
     height: 10vh;
     max-height: 10vh;
@@ -48,34 +65,31 @@ background-color: rgb(98, 150, 192);
 }
 
 .text p {
-    padding:5px;
+    padding: 5px;
     font-size: 22px;
     margin: 0;
     margin-right: 5px;
 }
 
-.output{
+.output {
     color: rgb(232, 226, 226);
 }
 
 
 .buttons {
-    min-width: 300px;
-
+    min-width: 250px;
+    max-height: 280px;
     border-radius: 20px;
     flex: 1 0 0;
     display: flex;
     justify-content: space-evenly;
-    
     flex-wrap: wrap;
 }
-
-
 
 .button {
     margin: 2px;
     flex: 1 0 0;
-    min-width: 60px;
+    min-width: 50px;
     max-height: 40px;
     border-radius: 10px;
     border: none;
@@ -88,7 +102,12 @@ background-color: rgb(98, 150, 192);
     color: rgb(232, 226, 226);
 }
 
-.buttonbig{
+.button:hover {
+    background-color: rgb(101, 156, 215);
+
+}
+
+.buttonbig {
     margin: 5px;
     flex: 2 0 0;
     min-width: 60px;
