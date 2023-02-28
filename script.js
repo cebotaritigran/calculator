@@ -1,5 +1,5 @@
 // array of operators to use in loops
-const operators = ["+", "-", "/", "*"];
+const operators = ["+", "-", "/", "*", "%", "**"];
 
 function add(x, y) {
     return x + y;
@@ -17,11 +17,21 @@ function divide(x, y) {
     return x / y;
 }
 
+function remainder(x, y) {
+    return x % y;
+}
+
+function powerof(x, y) {
+    return x ** y;
+}
+
 function operate(operator, x, y) {
     if (operator == "+") return add(x, y);
     if (operator == "-") return subtract(x, y);
     if (operator == "*") return multiply(x, y);
     if (operator == "/") return divide(x, y);
+    if (operator == "%") return remainder(x, y);
+    if (operator == "**") return powerof(x, y);
 }
 
 const buttons = document.querySelectorAll('.button');
@@ -38,30 +48,36 @@ let total;
 let trackedNumber = 0;
 
 function inputNumber() {
-    //console.log(this.textContent);
     let elementSelected = this.textContent
-
-
     if (elementSelected == "AC") {
-        firstNumber = null;
-        secondNumber = null;
+        firstNumber = undefined;
+        secondNumber = undefined;
         numberArray = [];
         operatorArray = [];
-        
+        operatorSelected = undefined;
+        newOperator = undefined;
+        total = undefined;
+        trackedNumber = 0;
+        output.textContent = "";
+        input.textContent = "";
+    }
+
+    if (elementSelected == "DEL") {
+        output.textContent = output.textContent.slice(0, -1);
+        trackedNumber = output.textContent;
     }
 
     if (!isNaN(elementSelected)) {
         trackedNumber += elementSelected;
         trackedNumber = Number(trackedNumber);
         output.textContent += elementSelected;
-        console.log(trackedNumber);
     }
-
 
     for (let i = 0; i < operators.length; i++) {
 
         if (elementSelected == operators[i]) {
             if (total > 0 && operatorArray.length == 0) {
+                //check if total has decimal
                 if (total % 1 != 0) {
                     firstNumber = total.toFixed(3);
                 } else {
@@ -71,7 +87,7 @@ function inputNumber() {
                 numberArray[0] = firstNumber;
             } else {
                 firstNumber = trackedNumber;
-
+                //check if total has decimal
                 if (total % 1 != 0) {
                     firstNumber = Number(firstNumber.toFixed(3));
                 } else {
@@ -80,6 +96,7 @@ function inputNumber() {
                 input.textContent = firstNumber + operators[i];
                 numberArray.push(firstNumber)
             }
+
             trackedNumber = 0;
             operatorSelected = operators[i];
             operatorArray.push(operatorSelected);
@@ -107,6 +124,7 @@ function calculate(operatorInput, firstInput, secondInput) {
             total = operate(operators[i], firstInput, secondInput);
             numberArray = [];
             operatorArray = [];
+            //check if total has decimal
             if (total % 1 != 0) {
                 total = Number(total.toFixed(3));
             } else {

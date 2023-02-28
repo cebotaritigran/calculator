@@ -37,7 +37,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     padding: 12px;
-    gap: 20px;
+    gap: 10px;
     background-color: rgb(31, 32, 37);
     border-radius: 25px;
     box-shadow: 3px 3px 4px black;
@@ -65,14 +65,16 @@ body {
 }
 
 .text p {
-    padding: 5px;
-    font-size: 22px;
+    padding: 10px;
+    font-size: 18px;
     margin: 0;
-    margin-right: 5px;
+    margin-right: 10px;
 }
-
+.input{
+    color: rgb(167, 171, 169);
+}
 .output {
-    color: rgb(232, 226, 226);
+    color: rgb(215, 216, 214);
 }
 
 
