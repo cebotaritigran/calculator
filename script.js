@@ -1,3 +1,5 @@
+const operators = ["+", "-", "/", "*"];
+
 function add(x, y) {
     return x + y;
 }
@@ -24,13 +26,17 @@ function operate(operator, x, y) {
 const buttons = document.querySelectorAll('.button');
 const output = document.querySelector('.output');
 const input = document.querySelector('.input');
+
 let firstNumber;
 let secondNumber;
-let temporaryNumber;
+let numberArray =[];
+let operatorArray = [];
 let operatorSelected;
-const operators = ["+", "-", "/", "*"];
+let a = 0;
+let newOperator;
+
 function inputNumber() {
-    console.log(this.textContent);
+    //console.log(this.textContent);
     let elementSelected = this.textContent
     if (elementSelected == "AC") {
         firstNumber = 0;
@@ -39,6 +45,7 @@ function inputNumber() {
         input.textContent = "";
         output.textContent = "";
     }
+
     if (!isNaN(elementSelected)) {
         output.textContent += elementSelected;
     }
@@ -47,20 +54,33 @@ function inputNumber() {
         if (elementSelected == operators[i]) {
             firstNumber = output.textContent;
             firstNumber = Number(firstNumber);
-            console.log(firstNumber);
+            numberArray.push(firstNumber)
+            //console.log(numberArray)
+
             input.textContent = firstNumber;
+
             operatorSelected = operators[i];
-            console.log(operatorSelected)
+
+            newOperator = operators[i];
+            operatorArray.push(operatorSelected);
+            //console.log(numberArray);
             output.textContent = "";
+            if(numberArray.length >= 2){
+                let firstInput = numberArray[0];
+                console.log(firstInput)
+                newOperator = operatorArray[0];
+                console.log(newOperator)
+                let secondInput = numberArray[1];
+                console.log(secondInput)
+                calculate(newOperator, firstInput, secondInput);
+                output.textContent = "";
+            }
         }
     }
 
     if (elementSelected == "=") {
         secondNumber = output.textContent;
         secondNumber = Number(secondNumber);
-        console.log(operatorSelected)
-        console.log(firstNumber)
-        console.log(secondNumber)
         calculate(operatorSelected, firstNumber, secondNumber);
     }
 }
@@ -68,10 +88,15 @@ function inputNumber() {
 function calculate(operatorInput, firstInput, secondInput) {
 
     for (let i = 0; i < operators.length; i++) {
-        if (operatorInput == operators[i]){
+        if (operatorInput == operators[i]) {
             input.textContent += operators[i] + secondInput;
             output.textContent = "";
-            return output.textContent = operate(operators[i],firstInput,secondInput)
+            let total = operate(operators[i], firstInput, secondInput);
+            numberArray = [];
+            operatorArray = [];
+            numberArray.push(total);
+            console.log(numberArray)
+            return output.textContent = operate(operators[i], firstInput, secondInput)
         }
     }
 }
