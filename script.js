@@ -1,3 +1,4 @@
+// array of operators to use in loops
 const operators = ["+", "-", "/", "*"];
 
 function add(x, y) {
@@ -29,51 +30,64 @@ const input = document.querySelector('.input');
 
 let firstNumber;
 let secondNumber;
-let numberArray =[];
+let numberArray = [];
 let operatorArray = [];
 let operatorSelected;
-let a = 0;
 let newOperator;
+let total;
+let trackedNumber = 0;
 
 function inputNumber() {
     //console.log(this.textContent);
     let elementSelected = this.textContent
+
+
     if (elementSelected == "AC") {
-        firstNumber = 0;
-        secondNumber = 0;
-        operatorSelected = "";
-        input.textContent = "";
-        output.textContent = "";
+        firstNumber = null;
+        secondNumber = null;
+        numberArray = [];
+        operatorArray = [];
+        
     }
 
     if (!isNaN(elementSelected)) {
+        trackedNumber += elementSelected;
+        trackedNumber = Number(trackedNumber);
         output.textContent += elementSelected;
+        console.log(trackedNumber);
     }
 
+
     for (let i = 0; i < operators.length; i++) {
+
         if (elementSelected == operators[i]) {
-            firstNumber = output.textContent;
-            firstNumber = Number(firstNumber);
-            numberArray.push(firstNumber)
-            //console.log(numberArray)
+            if (total > 0 && operatorArray.length == 0) {
+                if (total % 1 != 0) {
+                    firstNumber = total.toFixed(3);
+                } else {
+                    firstNumber = total;
+                }
+                input.textContent = firstNumber + operators[i];
+                numberArray[0] = firstNumber;
+            } else {
+                firstNumber = trackedNumber;
 
-            input.textContent = firstNumber;
-
+                if (total % 1 != 0) {
+                    firstNumber = Number(firstNumber.toFixed(3));
+                } else {
+                    firstNumber = Number(firstNumber);
+                }
+                input.textContent = firstNumber + operators[i];
+                numberArray.push(firstNumber)
+            }
+            trackedNumber = 0;
             operatorSelected = operators[i];
-
-            newOperator = operators[i];
             operatorArray.push(operatorSelected);
-            //console.log(numberArray);
+            console.log(numberArray);
             output.textContent = "";
-            if(numberArray.length >= 2){
-                let firstInput = numberArray[0];
-                console.log(firstInput)
-                newOperator = operatorArray[0];
-                console.log(newOperator)
-                let secondInput = numberArray[1];
-                console.log(secondInput)
-                calculate(newOperator, firstInput, secondInput);
-                output.textContent = "";
+            if (numberArray.length > 1) {
+                input.textContent = "please do 1 evale at a time";
+
             }
         }
     }
@@ -86,17 +100,21 @@ function inputNumber() {
 }
 
 function calculate(operatorInput, firstInput, secondInput) {
-
     for (let i = 0; i < operators.length; i++) {
         if (operatorInput == operators[i]) {
-            input.textContent += operators[i] + secondInput;
+            input.textContent += secondInput;
             output.textContent = "";
-            let total = operate(operators[i], firstInput, secondInput);
+            total = operate(operators[i], firstInput, secondInput);
             numberArray = [];
             operatorArray = [];
+            if (total % 1 != 0) {
+                total = Number(total.toFixed(3));
+            } else {
+                total = Number(total);
+            }
             numberArray.push(total);
-            console.log(numberArray)
-            return output.textContent = operate(operators[i], firstInput, secondInput)
+            trackedNumber = 0;
+            return output.textContent = total;
         }
     }
 }
