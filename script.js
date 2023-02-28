@@ -15,18 +15,10 @@ function divide(x, y) {
 }
 
 function operate(operator, x, y) {
-    if (operator == "+") {
-        add(x, y);
-    }
-    if (operator == "-") {
-        return subtract(x, y);
-    }
-    if (operator == "*") {
-        return multiply(x, y);
-    }
-    if (operator == "/") {
-        return divide(x, y);
-    }
+    if (operator == "+") return add(x, y);
+    if (operator == "-") return subtract(x, y);
+    if (operator == "*") return multiply(x, y);
+    if (operator == "/") return divide(x, y);
 }
 
 const buttons = document.querySelectorAll('.button');
@@ -36,120 +28,51 @@ let firstNumber;
 let secondNumber;
 let temporaryNumber;
 let operatorSelected;
+const operators = ["+", "-", "/", "*"];
 function inputNumber() {
-    let numberSelected = this.textContent
-
-    if (numberSelected == "AC") {
+    console.log(this.textContent);
+    let elementSelected = this.textContent
+    if (elementSelected == "AC") {
         firstNumber = 0;
         secondNumber = 0;
         operatorSelected = "";
         input.textContent = "";
         output.textContent = "";
     }
-    if (!isNaN(numberSelected)) {
-        output.textContent += numberSelected;
-    }
-    if (numberSelected == "x") {
-        if (operatorSelected) {
-            secondNumber = output.textContent;
-            secondNumber = Number(secondNumber);
-            if(operatorSelected == "+") temporaryNumber = firstNumber + secondNumber;
-            if(operatorSelected == "-") temporaryNumber = firstNumber - secondNumber;
-            if(operatorSelected == "*") temporaryNumber = firstNumber * secondNumber;
-            if(operatorSelected == "/") temporaryNumber = firstNumber / secondNumber;
-            calculate(operatorSelected, temporaryNumber, secondNumber);
-        }
-        firstNumber = output.textContent;
-        firstNumber = Number(firstNumber);
-        input.textContent = firstNumber;
-        operatorSelected = "x";
-        output.textContent = "";
-    }
-    if (numberSelected == "/") {
-        if (operatorSelected) {
-            secondNumber = output.textContent;
-            secondNumber = Number(secondNumber);
-            if(operatorSelected == "+") temporaryNumber = firstNumber + secondNumber;
-            if(operatorSelected == "-") temporaryNumber = firstNumber - secondNumber;
-            if(operatorSelected == "*") temporaryNumber = firstNumber * secondNumber;
-            if(operatorSelected == "/") temporaryNumber = firstNumber / secondNumber;
-            calculate(operatorSelected, temporaryNumber, secondNumber);
-        }
-        firstNumber = output.textContent;
-        firstNumber = Number(firstNumber);
-        input.textContent = firstNumber;
-        operatorSelected = "/";
-        output.textContent = "";
-    }
-    if (numberSelected == "+") {
-        if (operatorSelected) {
-            secondNumber = output.textContent;
-            secondNumber = Number(secondNumber);
-            if(operatorSelected == "+") temporaryNumber = firstNumber + secondNumber;
-            if(operatorSelected == "-") temporaryNumber = firstNumber - secondNumber;
-            if(operatorSelected == "*") temporaryNumber = firstNumber * secondNumber;
-            if(operatorSelected == "/") temporaryNumber = firstNumber / secondNumber;
-            calculate(operatorSelected, temporaryNumber, secondNumber);
-        }
-        firstNumber = output.textContent;
-        firstNumber = Number(firstNumber);
-        input.textContent = firstNumber;
-        operatorSelected += "+";
-        output.textContent = "";
+    if (!isNaN(elementSelected)) {
+        output.textContent += elementSelected;
     }
 
-    if (numberSelected == "-") {
-        if (operatorSelected) {
-            secondNumber = output.textContent;
-            secondNumber = Number(secondNumber);
-            if(operatorSelected == "+") temporaryNumber = firstNumber + secondNumber;
-            if(operatorSelected == "-") temporaryNumber = firstNumber - secondNumber;
-            if(operatorSelected == "*") temporaryNumber = firstNumber * secondNumber;
-            if(operatorSelected == "/") temporaryNumber = firstNumber / secondNumber;
-            calculate(operatorSelected, temporaryNumber, secondNumber);
+    for (let i = 0; i < operators.length; i++) {
+        if (elementSelected == operators[i]) {
+            firstNumber = output.textContent;
+            firstNumber = Number(firstNumber);
+            console.log(firstNumber);
+            input.textContent = firstNumber;
+            operatorSelected = operators[i];
+            console.log(operatorSelected)
+            output.textContent = "";
         }
-        firstNumber = output.textContent;
-        firstNumber = Number(firstNumber);
-        input.textContent = firstNumber;
-        operatorSelected = "-";
-        output.textContent = "";
-
     }
-    if (numberSelected == "=") {
+
+    if (elementSelected == "=") {
         secondNumber = output.textContent;
         secondNumber = Number(secondNumber);
+        console.log(operatorSelected)
+        console.log(firstNumber)
+        console.log(secondNumber)
         calculate(operatorSelected, firstNumber, secondNumber);
     }
 }
 
-function equals() {
-
-}
-
 function calculate(operatorInput, firstInput, secondInput) {
-    if (operatorInput == "x") {
-        input.textContent += 'x' + secondNumber;
-        output.textContent = "";
-        console.log(operate("*", firstNumber, secondNumber));
-        return output.textContent = operate("*", firstNumber, secondNumber);
-    }
-    if (operatorSelected == "/") {
-        input.textContent += '/' + secondNumber;
-        output.textContent = "";
-        console.log(operate("/", firstNumber, secondNumber));
-        return output.textContent = operate("/", firstNumber, secondNumber);
-    }
-    if (operatorSelected == "+") {
-        input.textContent += '+' + secondNumber;
-        output.textContent = "";
-        console.log(operate("+", firstNumber, secondNumber));
-        return output.textContent = operate("+", firstNumber, secondNumber);
-    }
-    if (operatorSelected == "-") {
-        input.textContent += '-' + secondNumber;
-        output.textContent = "";
-        console.log(operate("-", firstNumber, secondNumber));
-        return output.textContent = operate("-", firstNumber, secondNumber);
+
+    for (let i = 0; i < operators.length; i++) {
+        if (operatorInput == operators[i]){
+            input.textContent += operators[i] + secondInput;
+            output.textContent = "";
+            return output.textContent = operate(operators[i],firstInput,secondInput)
+        }
     }
 }
 
