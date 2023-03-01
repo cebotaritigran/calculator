@@ -48,6 +48,13 @@ let total;
 let trackedNumber = 0;
 
 function inputNumber() {
+
+        var audio = document.getElementById("audio");
+
+        audio.currentTime = 0;
+        audio.play();
+
+
     let elementSelected = this.textContent
     if (elementSelected == "AC") {
         firstNumber = undefined;
@@ -114,6 +121,8 @@ function inputNumber() {
         secondNumber = Number(secondNumber);
         calculate(operatorSelected, firstNumber, secondNumber);
     }
+    
+
 }
 
 function calculate(operatorInput, firstInput, secondInput) {
@@ -135,8 +144,14 @@ function calculate(operatorInput, firstInput, secondInput) {
             return output.textContent = total;
         }
     }
+
+    
 }
 
 buttons.forEach(element => {
     element.addEventListener('click', inputNumber);
 });
+
+
+
+

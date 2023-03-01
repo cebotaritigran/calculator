@@ -8,11 +8,15 @@
     <title>Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Spectral:ital,wght@1,600&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
 
 <body>
+    <audio id="audio" src="./click.mp3"></audio>
     <div class="container">
         <div class="box">
             <div class="display">
@@ -22,24 +26,24 @@
                 </div>
             </div>
             <div class="buttons">
-                <button class="button">1</button>
-                <button class="button">2</button>
-                <button class="button">3</button>
-                <button class="button operation">%</button>
-                <button class="button">4</button>
-                <button class="button">5</button>
-                <button class="button">6</button>
-                <button class="button operation">**</button>
-                <button class="button">7</button>
-                <button class="button">8</button>
-                <button class="button">9</button>
-                <button class="button equals">=</button>
-                <button class="button operation">+</button>
-                <button class="button operation">-</button>
-                <button class="button operation">*</button>
-                <button class="button operation">/</button>
-                <button class="button clear">AC</button>
-                <button class="button clear">DEL</button>
+                <button class="button clicked">1</button>
+                <button class="button clicked">2</button>
+                <button class="button clicked">3</button>
+                <button class="button operation clicked">%</button>
+                <button class="button clicked">4</button>
+                <button class="button clicked">5</button>
+                <button class="button clicked">6</button>
+                <button class="button operation clicked">**</button>
+                <button class="button clicked">7</button>
+                <button class="button clicked">8</button>
+                <button class="button clicked">9</button>
+                <button class="button equals clicked">=</button>
+                <button class="button operation clicked">+</button>
+                <button class="button operation clicked">-</button>
+                <button class="button operation clicked">*</button>
+                <button class="button operation clicked">/</button>
+                <button class="button clear clicked">AC</button>
+                <button class="button clear clicked">DEL</button>
 
             </div>
 
