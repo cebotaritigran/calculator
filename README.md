@@ -5,7 +5,7 @@ This project is a simple calculator that allows users to perform basic arithmeti
 To run this project, you will need a web browser such as Google Chrome, Mozilla Firefox, or Microsoft Edge. You do not need to install any additional software or tools.
 
 ## Getting Started
-To get started with the calculator project, simply open the (live demo)[https://cebotaritigran.github.io/calculator/]
+To get started with the calculator project, simply open the [live demo](https://cebotaritigran.github.io/calculator/)
 
 ## Using the Calculator
 The calculator is very easy to use. Simply click on the buttons to enter the numbers and operators you wish to use in your calculation. The calculator will display the result of your calculation in the output area.
